@@ -37,6 +37,9 @@ To adapt a trained GMN to a specific dataset, e.g. vgg cells, run
 
 `python src/main.py --mode adapt --dataset vgg_cell --data_path /path/to/data --gmn_path /path/to/pretrained_gmn_model`
 
+### Pretrained Models
+The pretrained GMN weights are available [here](http://www.robots.ox.ac.uk/~vgg/research/class-agnostic-counting/models/pretrained_gmn.h5).
+
 ### References
 ```
 [1] L. Bertinetto, J. Valmadre, J.F. Henriques, A. Vedaldi, P.H.S. Torr. "Fully-Convolutional Siamese Networks for Object Tracking." In ECCV Workshop 2016.
