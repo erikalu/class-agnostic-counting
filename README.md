@@ -10,6 +10,23 @@ This repo contains a Keras implementation of the paper,     [Class-Agnostic Coun
 
 For Conda users, you can create a new Conda environment using `conda env create -f environment.yml.`
 
+### Pretrained Models
+The pretrained GMN weights are available [here](http://www.robots.ox.ac.uk/~vgg/research/class-agnostic-counting/models/pretrained_gmn.h5).
+
+### Demo
+The GMN is trained on ImageNet Video data.
+
+To run the pretrained GMN on the *unseen* example cell image, first download and save the model weights as `./checkpoints/pretrained_gmn.h5`.
+
+Then run:
+```
+python demo.py --im images/cells.jpg --exemplar images/exemplar_cell.jpg
+```
+
+The predicted heatmap visualization will be saved as `heatmap_vis.jpg`.
+
+For improved performance, the GMN can be adapted to any new dataset (see [here](https://github.com/erikalu/class-agnostic-counting#adapting-the-gmn)).
+
 ### Data
 Download and preprocess the data for training the GMN following the instructions at: https://github.com/bertinetto/siamese-fc/tree/master/ILSVRC15-curation [1]. 
 Before preprocessing the dataset, change the following variables:
@@ -38,9 +55,6 @@ The code expects ImageNet pretrained Resnet50 weights at
 To adapt a trained GMN to a specific dataset, e.g. vgg cells, run
 
 `python src/main.py --mode adapt --dataset vgg_cell --data_path /path/to/data --gmn_path /path/to/pretrained_gmn_model`
-
-### Pretrained Models
-The pretrained GMN weights are available [here](http://www.robots.ox.ac.uk/~vgg/research/class-agnostic-counting/models/pretrained_gmn.h5).
 
 ### References
 ```
