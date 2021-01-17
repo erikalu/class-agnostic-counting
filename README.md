@@ -27,14 +27,20 @@ Labels should be in the form of dot annotation images.
 
 ### Training the GMN
 To train the Generic Matching Network (GMN) on the ImageNet video data, run
+
 `python src/main.py --mode pretrain --data_path /path/to/ILSVRC2015_crops/train/`
 
 The code expects ImageNet pretrained Resnet50 weights at
+
 `models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5`
 
 ### Adapting the GMN
 To adapt a trained GMN to a specific dataset, e.g. vgg cells, run
+
 `python src/main.py --mode adapt --dataset vgg_cell --data_path /path/to/data --gmn_path /path/to/pretrained_gmn_model`
+
+### Pretrained Models
+The pretrained GMN weights are available [here](http://www.robots.ox.ac.uk/~vgg/research/class-agnostic-counting/models/pretrained_gmn.h5).
 
 ### References
 ```
