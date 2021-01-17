@@ -3,11 +3,13 @@ import random
 import numpy as np
 import scipy.ndimage
 import skimage.measure
+from PIL import Image
 
 
 def initialize_GPU(args):
     # Initialize GPUs
-    import tensorflow as tf
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
@@ -110,16 +112,17 @@ def load_data(imgpath, dims=None, pad=0, normalize=False):
     pad (int): pixels of mean padding to include on each border
     normalize: if True, return image in range [0,1]
     '''
-    img = scipy.misc.imread(imgpath, mode='RGB')
-    if normalize:
-        img = img/255.
+    img = Image.open(imgpath).convert(mode='RGB')
     if dims:
         imgdims = (dims[0]-pad*2, dims[1]-pad*2, dims[2])
-        img = scipy.misc.imresize(img, (imgdims[0], imgdims[1]))
+        img = img.resize((imgdims[1], imgdims[0]), resample=Image.BILINEAR)
         if pad:
             padded_im = np.zeros(dims)
             padded_im[:] = np.mean(img, axis=(0, 1))
             padded_im[pad:imgdims[0]-pad, pad:imgdims[1]-pad, :] = img
+    img = np.array(img)
+    if normalize:
+        img = img/255.
 
     return img
 
@@ -131,7 +134,7 @@ def load_dotlabel(lbpath, imgdims, pad=0):
     pad (int): pixels of zero padding to include on each border
     '''
 
-    lb = scipy.misc.imread(lbpath, mode='RGB')
+    lb = np.array(Image.open(lbpath).convert(mode='RGB'))
 
     # resize dot labels
     lb = np.asarray(lb[:, :, 0] > 230)

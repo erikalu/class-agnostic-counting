@@ -1,0 +1,12 @@
+name: cacounting
+channels:
+  - defaults
+dependencies:
+- python=3.8
+- tensorflow=2.2.0
+- keras=2.4.3 
+- pip:
+  - Pillow>=6.1.0
+  - numpy==1.19.2
+  - scikit-image==0.18.1
+

@@ -3,10 +3,12 @@
 This repo contains a Keras implementation of the paper,     [Class-Agnostic Counting (Lu et al., ACCV 2018)](https://arxiv.org/abs/1811.00472). It includes code for training the GMN (Generic Matching Network) and adapting it to specific datasets.
  
 ### Dependencies
-- [Python 3.4.9](https://www.python.org/downloads/)
-- [Keras 2.1.5](https://keras.io/)
-- [Tensorflow 1.6.0](https://www.tensorflow.org/)
+- [Python 3.8.5](https://www.python.org/downloads/)
+- [Keras 2.4.3](https://keras.io/)
+- [Tensorflow 2.2.0](https://www.tensorflow.org/)
+- [scikit-image 0.18.1](https://scikit-image.org/)
 
+For Conda users, you can create a new Conda environment using `conda env create -f environment.yml.`
 
 ### Data
 Download and preprocess the data for training the GMN following the instructions at: https://github.com/bertinetto/siamese-fc/tree/master/ILSVRC15-curation [1]. 

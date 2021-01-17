@@ -103,7 +103,7 @@ def two_stream_matching_networks(cg, adapt=False, sync=True):
     image_f = L2_Normalization_Layer(name='image_f_l2')(image_f)
 
     # ==> broadcast exemplar feature vector (1 x 1 x 512) to same size as image features
-    exemplar = keras.layers.RepeatVector(image_f.shape[1].value*image_f.shape[2].value)(exemplar)
+    exemplar = keras.layers.RepeatVector(image_f.shape[1]*image_f.shape[2])(exemplar)
     exemplar = keras.layers.Reshape(image_f.get_shape().as_list()[1:4])(exemplar)
 
     # ==> oncatenate exemplar and image features
